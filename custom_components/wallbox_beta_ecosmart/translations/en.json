@@ -1,27 +1,27 @@
 {
   "config": {
     "abort": {
-      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]",
-      "reauth_successful": "[%key:common::config_flow::abort::reauth_successful%]"
+      "already_configured": "Device is already configured",
+      "reauth_successful": "Re-authentication was successful"
     },
     "error": {
-      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
-      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
+      "cannot_connect": "Failed to connect",
+      "invalid_auth": "Invalid authentication",
       "reauth_invalid": "Re-authentication failed; serial number does not match original",
-      "unknown": "[%key:common::config_flow::error::unknown%]"
+      "unknown": "Unexpected error"
     },
     "step": {
       "reauth_confirm": {
         "data": {
-          "password": "[%key:common::config_flow::data::password%]",
-          "username": "[%key:common::config_flow::data::username%]"
+          "password": "Password",
+          "username": "Username"
         }
       },
       "user": {
         "data": {
-          "password": "[%key:common::config_flow::data::password%]",
+          "password": "Password",
           "station": "Station serial number",
-          "username": "[%key:common::config_flow::data::username%]"
+          "username": "Username"
         },
         "data_description": {
           "password": "Password for your Wallbox account.",
@@ -39,7 +39,7 @@
     },
     "lock": {
       "lock": {
-        "name": "[%key:component::lock::title%]"
+        "name": "Lock"
       }
     },
     "number": {
@@ -59,7 +59,7 @@
         "state": {
           "eco_mode": "Eco mode",
           "full_solar": "Full solar",
-          "off": "[%key:common::state::off%]"
+          "off": "Off"
         }
       }
     },

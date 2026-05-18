@@ -70,6 +70,10 @@ mkdir -p "$TRANSLATIONS_DIR"
 cp "$STRINGS" "$TRANSLATIONS_DIR/en.json"
 echo ">> Generated $TRANSLATIONS_DIR/en.json from strings.json"
 
+# Resolve [%key:...%] cross-references (otherwise they show as literals in the UI,
+# e.g. the lock entity name showing "[%key:component::lock::title%]").
+python3 "$HACS_REPO_DIR/resolve-references.py" "$CORE_REPO" "$TRANSLATIONS_DIR/en.json"
+
 # --- Git -------------------------------------------------------------------
 cd "$HACS_REPO_DIR"
 git add -A "$DEST_DIR_REL"
