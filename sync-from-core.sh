@@ -58,6 +58,18 @@ jq --arg v "$VERSION" '. + {version: $v}' "$MANIFEST" > "$tmp"
 mv "$tmp" "$MANIFEST"
 echo ">> Injected version=$VERSION into $MANIFEST"
 
+# --- Generate translations/en.json from strings.json ------------------------
+# Required for HACS custom_components: HA reads translations from
+# <integration>/translations/<lang>.json, not from strings.json (which is
+# only the Lokalise source for core integrations, gitignored in HA core).
+# strings.json schema is identical to translations/en.json, so we copy verbatim.
+STRINGS="$DEST_DIR/strings.json"
+TRANSLATIONS_DIR="$DEST_DIR/translations"
+[[ -f "$STRINGS" ]] || { echo "ERROR: strings.json missing after rsync" >&2; exit 1; }
+mkdir -p "$TRANSLATIONS_DIR"
+cp "$STRINGS" "$TRANSLATIONS_DIR/en.json"
+echo ">> Generated $TRANSLATIONS_DIR/en.json from strings.json"
+
 # --- Git -------------------------------------------------------------------
 cd "$HACS_REPO_DIR"
 git add -A "$DEST_DIR_REL"
